@@ -1,0 +1,141 @@
+@{
+    ViewData["Title"] = "User Dashboard";
+}
+
+<div class="dashboard-container user-dashboard">
+    <div class="container">
+        <div class="dashboard-header">
+            <h1><i class="bi bi-speedometer2"></i> User Dashboard</h1>
+            <p>Welcome back! Browse and book events from here.</p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3 col-sm-6">
+                <div class="card stat-card stat-card-primary">
+                    <div class="card-body text-center">
+                        <div class="stat-icon">
+                            <i class="bi bi-calendar-event-fill"></i>
+                        </div>
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Upcoming Events</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card stat-card stat-card-success">
+                    <div class="card-body text-center">
+                        <div class="stat-icon">
+                            <i class="bi bi-ticket-perforated-fill"></i>
+                        </div>
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">My Bookings</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card stat-card stat-card-warning">
+                    <div class="card-body text-center">
+                        <div class="stat-icon">
+                            <i class="bi bi-calendar-check-fill"></i>
+                        </div>
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Attended Events</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card stat-card stat-card-info">
+                    <div class="card-body text-center">
+                        <div class="stat-icon">
+                            <i class="bi bi-heart-fill"></i>
+                        </div>
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Saved Events</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card feature-card">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <div class="feature-icon">
+                                <i class="bi bi-calendar-event"></i>
+                            </div>
+                        </div>
+                        <h5 class="card-title text-center">Browse Events</h5>
+                        <p class="card-text text-center">Discover and explore upcoming events. Find something that interests you!</p>
+                        <div class="d-grid">
+                            <a href="#" class="btn btn-primary">
+                                <i class="bi bi-arrow-right-circle"></i> View All Events
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card feature-card">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <div class="feature-icon">
+                                <i class="bi bi-ticket-perforated"></i>
+                            </div>
+                        </div>
+                        <h5 class="card-title text-center">My Bookings</h5>
+                        <p class="card-text text-center">View and manage your event bookings. Check your upcoming events.</p>
+                        <div class="d-grid">
+                            <a href="#" class="btn btn-primary">
+                                <i class="bi bi-arrow-right-circle"></i> View My Bookings
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Quick Links -->
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                        <h6 class="card-title">My Profile</h6>
+                        <p class="card-text small">View and edit your profile information</p>
+                        <a asp-controller="Profile" asp-action="Index" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-arrow-right"></i> Go to Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="bi bi-bell"></i>
+                        </div>
+                        <h6 class="card-title">Notifications</h6>
+                        <p class="card-text small">View your event notifications</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <h6 class="card-title">Saved Events</h6>
+                        <p class="card-text small">View your saved events</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

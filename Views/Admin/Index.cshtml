@@ -1,0 +1,139 @@
+@model AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="dashboard-container admin-dashboard">
+    <div class="container">
+        <div class="dashboard-header">
+            <h1><i class="bi bi-speedometer2"></i> Admin Dashboard</h1>
+            <p>Welcome back! Manage your event booking system from here.</p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3 col-sm-6">
+                <div class="card stat-card stat-card-primary">
+                    <div class="card-body text-center">
+                        <div class="stat-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <div class="stat-value">@Model.TotalUsers</div>
+                        <div class="stat-label">Total Users</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card stat-card stat-card-success">
+                    <div class="card-body text-center">
+                        <div class="stat-icon">
+                            <i class="bi bi-calendar-event-fill"></i>
+                        </div>
+                        <div class="stat-value">@Model.TotalEvents</div>
+                        <div class="stat-label">Total Events</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card stat-card stat-card-warning">
+                    <div class="card-body text-center">
+                        <div class="stat-icon">
+                            <i class="bi bi-ticket-perforated-fill"></i>
+                        </div>
+                        <div class="stat-value">@Model.TotalBookings</div>
+                        <div class="stat-label">Total Bookings</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card stat-card stat-card-info">
+                    <div class="card-body text-center">
+                        <div class="stat-icon">
+                            <i class="bi bi-shield-check-fill"></i>
+                        </div>
+                        <div class="stat-value">@Model.TotalAdmins</div>
+                        <div class="stat-label">Admins</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card feature-card">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <div class="feature-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                        </div>
+                        <h5 class="card-title text-center">Manage Users</h5>
+                        <p class="card-text text-center">View, edit, and manage all user accounts. Assign roles and permissions.</p>
+                        <div class="d-grid">
+                            <a asp-action="ManageUsers" class="btn btn-primary">
+                                <i class="bi bi-arrow-right-circle"></i> Go to User Management
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card feature-card">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <div class="feature-icon">
+                                <i class="bi bi-calendar-check"></i>
+                            </div>
+                        </div>
+                        <h5 class="card-title text-center">Manage Events</h5>
+                        <p class="card-text text-center">Create, edit, and manage events. Monitor bookings and attendance.</p>
+                        <div class="d-grid">
+                            <a asp-action="ManageEvents" class="btn btn-primary">
+                                <i class="bi bi-arrow-right-circle"></i> Go to Event Management
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Quick Links -->
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h6 class="card-title">Analytics</h6>
+                        <p class="card-text small">View system analytics and reports</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <h6 class="card-title">Settings</h6>
+                        <p class="card-text small">Configure system settings</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="bi bi-bell"></i>
+                        </div>
+                        <h6 class="card-title">Notifications</h6>
+                        <p class="card-text small">View system notifications</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
