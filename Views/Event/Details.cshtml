@@ -1,0 +1,154 @@
+@model EventBookingSystem.Models.Event
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<div class="dashboard-container admin-dashboard">
+    <div class="container">
+        <div class="admin-page-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1><i class="bi bi-info-circle"></i> Event Details</h1>
+                    <p class="mb-0">View complete event information</p>
+                </div>
+                <a asp-action="Index" class="btn btn-light">
+                    <i class="bi bi-arrow-left"></i> Back to Events
+                </a>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>@Model.Name</h2>
+                    <hr />
+
+                    <dl class="row">
+                        <dt class="col-sm-3">
+                            <i class="bi bi-card-text"></i> Description:
+                        </dt>
+                        <dd class="col-sm-9">
+                            @Model.Description
+                        </dd>
+
+                        <dt class="col-sm-3">
+                            <i class="bi bi-calendar-date"></i> Event Date:
+                        </dt>
+                        <dd class="col-sm-9">
+                            @Model.EventDate.ToString("MMMM dd, yyyy")
+                        </dd>
+
+                        <dt class="col-sm-3">
+                            <i class="bi bi-clock"></i> Event Time:
+                        </dt>
+                        <dd class="col-sm-9">
+                            @Model.EventTime.ToString(@"hh\:mm")
+                        </dd>
+
+                        <dt class="col-sm-3">
+                            <i class="bi bi-geo-alt"></i> Location:
+                        </dt>
+                        <dd class="col-sm-9">
+                            @Model.Location
+                        </dd>
+
+                        <dt class="col-sm-3">
+                            <i class="bi bi-people"></i> Capacity:
+                        </dt>
+                        <dd class="col-sm-9">
+                            @Model.Capacity
+                        </dd>
+
+                        <dt class="col-sm-3">
+                            <i class="bi bi-currency-dollar"></i> Price:
+                        </dt>
+                        <dd class="col-sm-9">
+                            @if (Model.Price == 0)
+                            {
+                                <span class="badge bg-success">Free</span>
+                            }
+                            else
+                            {
+                                <span>$@Model.Price.ToString("F2")</span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-3">
+                            <i class="bi bi-toggle-on"></i> Status:
+                        </dt>
+                        <dd class="col-sm-9">
+                            @if (Model.IsActive)
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Inactive</span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-3">
+                            <i class="bi bi-calendar"></i> Created:
+                        </dt>
+                        <dd class="col-sm-9">
+                            @Model.CreatedDate.ToString("MMMM dd, yyyy HH:mm")
+                        </dd>
+
+                        @if (Model.UpdatedDate.HasValue)
+                        {
+                            <dt class="col-sm-3">
+                                <i class="bi bi-pencil"></i> Last Updated:
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Model.UpdatedDate.Value.ToString("MMMM dd, yyyy HH:mm")
+                            </dd>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Model.CreatedBy))
+                        {
+                            <dt class="col-sm-3">
+                                <i class="bi bi-person"></i> Created By:
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Model.CreatedBy
+                            </dd>
+                        }
+                    </dl>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                            <i class="bi bi-pencil"></i> Edit Event
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Delete Event
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                    {
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="bi bi-image"></i> Event Image</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <img src="@Model.ImagePath" alt="@Model.Name" class="img-fluid rounded" />
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="card">
+                            <div class="card-body text-center text-muted">
+                                <i class="bi bi-image" style="font-size: 3rem;"></i>
+                                <p class="mt-2 mb-0">No image available</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
