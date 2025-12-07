@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "All Bookings (Admin)";
+    var bookings = ViewBag.Bookings as List<EventBookingSystem.Models.Booking>;
+    var events = ViewBag.Events as List<dynamic>;
+}
+
+<h2>Bookings by Event</h2>
+
+@foreach (var ev in events)
+{
+    <h4>@ev.Title</h4>
+    <table class="table">
+        <thead>
+            <tr><th>User</th><th>Seats</th><th>Date</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var b in bookings.Where(x => x.EventId == ev.Id))
+            {
+                <tr>
+                    <td>@(b.User?.UserName ?? b.UserId)</td>
+                    <td>@b.SeatCount</td>
+                    <td>@b.BookingDate.ToLocalTime().ToString("g")</td>
+                    <td>@b.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

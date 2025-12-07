@@ -1,0 +1,38 @@
+@model IEnumerable<EventBookingSystem.Models.Booking>
+@{
+    ViewData["Title"] = "My Bookings";
+}
+
+<h2>My Bookings</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Seats</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var b in Model)
+    {
+        <tr>
+            <td>@b.Event?.Title</td>
+            <td>@b.SeatCount</td>
+            <td>@b.BookingDate.ToLocalTime().ToString("g")</td>
+            <td>@b.Status</td>
+            <td>
+                @if (b.Status != "Cancelled")
+                {
+                    <form asp-action="Cancel" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="@b.BookingId" />
+                        <button class="btn btn-sm btn-danger" type="submit">Cancel</button>
+                    </form>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
