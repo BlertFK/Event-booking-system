@@ -1,0 +1,24 @@
+@model EventBookingSystem.Models.DashboardVM
+
+<h2>Admin Dashboard</h2>
+
+<p><strong>Total Events:</strong> @Model.TotalEvents</p>
+<p><strong>Total Bookings:</strong> @Model.TotalBookings</p>
+
+<h3>Upcoming Events</h3>
+
+@if (Model.UpcomingEvents.Any())
+{
+    <ul>
+        @foreach (var ev in Model.UpcomingEvents)
+        {
+            <li>
+                @ev.Title - @ev.Date.ToString("dd/MM/yyyy HH:mm")
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No upcoming events.</p>
+}

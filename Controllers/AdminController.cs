@@ -30,10 +30,8 @@ namespace EventBookingSystem.Controllers
         {
             var model = new AdminDashboardViewModel();
 
-            // Get total users count
             model.TotalUsers = _userManager.Users.Count();
 
-            // Get admin users count
             var adminRole = await _roleManager.FindByNameAsync("Admin");
             if (adminRole != null)
             {
@@ -41,7 +39,6 @@ namespace EventBookingSystem.Controllers
                 model.TotalAdmins = adminUsers.Count;
             }
 
-            // Get regular users count
             var userRole = await _roleManager.FindByNameAsync("User");
             if (userRole != null)
             {
@@ -49,11 +46,14 @@ namespace EventBookingSystem.Controllers
                 model.TotalRegularUsers = regularUsers.Count;
             }
 
-            // Get events count
             model.TotalEvents = await _context.Events.CountAsync();
-            
-            // Bookings - set to 0 for now (will be updated when booking system is implemented)
-            model.TotalBookings = 0;
+
+            model.TotalBookings = await _context.Bookings.CountAsync();
+
+            model.UpcomingEvents = await _context.Events
+                .Where(e => e.Date > DateTime.Now)
+                .OrderBy(e => e.Date)
+                .ToListAsync();
 
             return View(model);
         }
@@ -92,4 +92,3 @@ namespace EventBookingSystem.Controllers
         }
     }
 }
-
