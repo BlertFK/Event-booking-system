@@ -70,13 +70,51 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
+        
+        // Ensure database is created
         context.Database.EnsureCreated();
+        
+        // Ensure Events table exists (for existing databases that were created before Event model was added)
+        await EnsureEventsTableExistsAsync(context);
+        
         await DbInitializer.InitializeAsync(services);
     }
     catch (Exception ex)
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
         logger.LogError(ex, "An error occurred while seeding the database.");
+    }
+}
+
+// Helper method to ensure Events table exists
+static async Task EnsureEventsTableExistsAsync(ApplicationDbContext context)
+{
+    try
+    {
+        // Check if Events table exists by trying to query it
+        await context.Database.ExecuteSqlRawAsync("SELECT TOP 1 Id FROM Events");
+    }
+    catch
+    {
+        // Table doesn't exist, create it
+        await context.Database.ExecuteSqlRawAsync(@"
+            CREATE TABLE [Events] (
+                [Id] int NOT NULL IDENTITY(1,1),
+                [Name] nvarchar(200) NOT NULL,
+                [Description] nvarchar(2000) NOT NULL,
+                [EventDate] datetime2 NOT NULL,
+                [EventTime] time NOT NULL,
+                [Location] nvarchar(200) NOT NULL,
+                [Capacity] int NOT NULL,
+                [Price] decimal(18,2) NOT NULL,
+                [ImagePath] nvarchar(500) NULL,
+                [IsActive] bit NOT NULL,
+                [CreatedDate] datetime2 NOT NULL,
+                [UpdatedDate] datetime2 NULL,
+                [CreatedBy] nvarchar(450) NULL,
+                CONSTRAINT [PK_Events] PRIMARY KEY ([Id])
+            );
+        ");
     }
 }
 

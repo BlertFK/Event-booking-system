@@ -49,8 +49,10 @@ namespace EventBookingSystem.Controllers
                 model.TotalRegularUsers = regularUsers.Count;
             }
 
-            // Events and Bookings - set to 0 for now (will be updated when those features are implemented)
-            model.TotalEvents = 0;
+            // Get events count
+            model.TotalEvents = await _context.Events.CountAsync();
+            
+            // Bookings - set to 0 for now (will be updated when booking system is implemented)
             model.TotalBookings = 0;
 
             return View(model);
